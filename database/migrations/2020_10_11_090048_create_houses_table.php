@@ -24,7 +24,7 @@ class CreateHousesTable extends Migration
                 $table->smallInteger('bathrooms')->index();
                 $table->smallInteger('storeys')->index();
                 $table->smallInteger('garages')->index();
-                $table->timestampsTz();
+                $table->timestamps();
             }
         );
     }
