@@ -45,6 +45,6 @@ npm run production
 ```
 php artisan serve
 ```
-THen open your favorite browser and navigate http://localhost:8000.
+Now navigate http://localhost:8000 in your favorite browser.
 
 [Known issues](ISSUES.md)
