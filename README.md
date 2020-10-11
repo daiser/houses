@@ -18,7 +18,7 @@ composer install --no-dev
 npm install
 ```
 
-#### Setup environment
+#### Set up App environment
 ```
 cp .env.run .env
 ```
@@ -31,7 +31,7 @@ touch database/database.sqlite
 ```
 **IMPORTANT!** Do NOT provide DB_DATABASE env-var. It's kinda Laravel's bug.
 
-Create required tables and seed with data:
+Create required tables and seed them with data:
 ```
 php artisan migrate:fresh --seed
 ```
