@@ -1,6 +1,6 @@
 # DreamHouse
 
-Best maison search service to get employed!
+House search app. 
 
 ## Requirements
 
