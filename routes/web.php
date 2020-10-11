@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get(
+    '/',
+    function()
+    {
+        return view('welcome');
+    }
+);
+
+Route::group(
+    ['prefix' => 'dynamic'],
+    function()
+    {
+        Route::post('search', [SearchController::class, 'search'])->name(ROUTE_DYNAMIC_SEARCH);
+    }
+);
