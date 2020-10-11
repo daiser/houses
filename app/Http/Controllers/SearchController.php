@@ -23,13 +23,13 @@ class SearchController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'name'       => 'string|nullable',
-                'price_from' => 'integer|nullable',
-                'price_to'   => 'integer|nullable',
-                'bedrooms'   => 'integer|nullable',
-                'bathrooms'  => 'integer|nullable',
-                'storeys'    => 'integer|nullable',
-                'garages'    => 'integer|nullable',
+                'name'      => 'string|nullable',
+                'price_min' => 'integer|nullable',
+                'price_max' => 'integer|nullable',
+                'bedrooms'  => 'integer|nullable',
+                'bathrooms' => 'integer|nullable',
+                'storeys'   => 'integer|nullable',
+                'garages'   => 'integer|nullable',
             ]
         );
 
@@ -43,11 +43,11 @@ class SearchController extends Controller
             if (($house_name = $request->get('name'))) {
                 $filter->where('name', 'like', "%{$house_name}%");
             }
-            if (($price_from = self::optInt($request->get('price_from'))) !== null) {
-                $filter->where('price', '>=', $price_from);
+            if (($price_min = self::optInt($request->get('price_min'))) !== null) {
+                $filter->where('price', '>=', $price_min);
             }
-            if (($price_to = self::optInt($request->get('price_to'))) !== null) {
-                $filter->where('price', '<=', $price_to);
+            if (($price_max = self::optInt($request->get('price_max'))) !== null) {
+                $filter->where('price', '<=', $price_max);
             }
             if (($bedrooms = self::optInt($request->get('bedrooms'))) !== null) {
                 $filter->where('bedrooms', $bedrooms);
@@ -62,7 +62,7 @@ class SearchController extends Controller
                 $filter->where('garages', $garages);
             }
 
-            return response()->json($filter->get()->toArray());
+            return response()->json($filter->orderBy('price')->get()->toArray());
         } catch (BadRequest $bad_request) {
             return response()->json($validator->errors()->all(), 400);
         }
