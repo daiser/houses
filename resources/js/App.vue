@@ -6,12 +6,24 @@
             </el-form-item>
             <el-form-item label="Price">
                 <el-col :span="11">
-                    <el-input v-model="form.price_min" placeholder="Min. price or blank for any"></el-input>
+                    <el-input v-model="form.price_min" placeholder="Min. price or leave blank for any"></el-input>
                 </el-col>
                 <el-col class="line" :span="2">-</el-col>
                 <el-col :span="11">
-                    <el-input v-model="form.price_max" placeholder="Max. price or blank for any"></el-input>
+                    <el-input v-model="form.price_max" placeholder="Max. price or leave blank for any"></el-input>
                 </el-col>
+            </el-form-item>
+            <el-form-item label="Bedrooms">
+                <el-input v-model="form.bedrooms" placeholder="Desired no. of bedrooms or leave blank for any"></el-input>
+            </el-form-item>
+            <el-form-item label="Bathrooms">
+                <el-input v-model="form.bathrooms" placeholder="Desired no. of bathrooms or leave blank for any"></el-input>
+            </el-form-item>
+            <el-form-item label="Storeys">
+                <el-input v-model="form.storeys" placeholder="Desired no. of storeys or leave blank for any"></el-input>
+            </el-form-item>
+            <el-form-item label="Garages">
+                <el-input v-model="form.garages" placeholder="Desired no. of garages or leave blank for any"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="onSearch">Find</el-button>
@@ -42,7 +54,11 @@ export default {
             form:  {
                 name:      '',
                 price_min: '',
-                price_max: ''
+                price_max: '',
+                bedrooms:  '',
+                bathrooms: '',
+                storeys:   '',
+                garages:   ''
             },
             found: []
         }
@@ -55,7 +71,11 @@ export default {
             axios.post('/dynamic/search', {
                 name:      this.form.name,
                 price_min: this.form.price_min,
-                price_max: this.form.price_max
+                price_max: this.form.price_max,
+                bedrooms:  this.form.bedrooms,
+                bathrooms: this.form.bathrooms,
+                storeys:   this.form.storeys,
+                garages:   this.form.garages
             }).then(response => {
                 console.log(response.status)
                 console.log(response.data)
